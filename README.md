@@ -1,16 +1,13 @@
-# readme.txt
+# readme.md
 Final Project
 
 
-1. I would like to create a code that can recommend music based on an input. The input will be the mood you're feeling and what you hope to feel after listening to music or watching a show/movie. Do you need to feel comforted or motivated? This code will also hopefully be able to recommend artists based on the emotions provided by the user.
+1. My Final Project will be a cognitive science experiment. It will be a false memory test. The participants will be given a set of words from a list. They will be shown the list twice; each word presented for an amount of time. Then, they will be asked to respond if the word was present in the list or not. It will count how many were correct and how many were false. They will get a percentage and an explanation on what false memories are and why it occurs anatomically.
 
+There will be four main functions. 
+2.a. memory_test(word list) The function will present  words based off a provided list twice. 
+2.b. present_or_not() It will then generate words that were either present in the list or are synonyms. The participant will have to respond with a yes or no. The time of each response will also be recorded. 
+2.c. analyze_response() The next function will check to see whether or not the responses were correct. 
+3.d. give_results() This function will give the percentage result of the test. It will also provide the explanation of false memories and why they may have potentially gotten a bad score. 
 
-2.a. In total, the user will get asked 3 questions. This function will ask a few questions to the user beginning with "How are you currently feeling?"
-
-
-2.b. It will then ask "What do you hope to feel?"
-
-
-2.c. Another two questions will be asked: "Do you want to watch or listen to something?" Based on already categorized shows and music, the user will be provided with recommendations on what to watch/listen to. 
-
-3. I will be completing this project on my own. 
+I will be working alone on this assignment. 
