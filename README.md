@@ -11,3 +11,4 @@ There will be four main functions.
 3.d. give_results() This function will give the percentage result of the test. It will also provide the explanation of false memories and why they may have potentially gotten a bad score. 
 
 I will be working alone on this assignment. 
+ Hello!
