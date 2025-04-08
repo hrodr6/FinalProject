@@ -1,7 +1,12 @@
 FALSE MEMORY EXPERIMENT
 
 1. Directions
+	this is in an instructions.txt file. 
+	I have created a config.py in order to create the screen. 
 2. Study Phase
+	created a word_list.txt with a DRM task list of words. 
+	creating a run_final_experiment.py for the project to run. 
 3. Test Phase 
 4. Result Analysis
 
+In order to run the experiment, similar to our last lab, we would use a run_final_experiment.py function. 
