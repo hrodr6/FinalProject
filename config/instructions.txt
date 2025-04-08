@@ -1,0 +1,6 @@
+Hello Participant! Do you trust your memory? Let's test it! In this experiment, you will be shown a list of words that are related to a theme. Each word will be individually presented for an short amount of time. Try to remember each word shown. In the memory test, you will see another sequence of words. If you saw the word in the original list, indicate the answer "yes" by pressing the "u" key. If you did NOT see the word in the original list, indicate the answer "no" by presenting the "i" key. When you are ready to begin seeing the list, please press the SPACE BAR. 
+You have completed the first portion of the test. Now after a short delay, you will have a memory test. You will again see a sequence of words. If you saw the word in the previous list, press the "u" key. If you did NOT see the word in the previous list, press the "i" key. Please rest your right hand on the keyboard on the "u" and "i" keys. Please try to respond as quickly and as accurately as you can.
+READY
+SET
+GO!
+You have completed the experiment. Thank you for your participation. Please press the SPACE BAR to quit.
