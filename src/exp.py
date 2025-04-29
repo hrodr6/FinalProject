@@ -7,13 +7,13 @@ import Config
 ftfcrtctrctyrcyt
 class Exp: 
 	def __init__(self, the_gui):
-	    self.the_gui = the_gui #presents info on screen
+	   self.the_gui = the_gui #presents info on screen
 
-		self.participant_id = None #each participant will get a number
-		self.instruction_list = None #string containing data in the instruction file
-		self.full_stimulus_list = None
-		self.familiarization_list = None #the words presented that are the actual list
-		self.test_list = None #words presented which contain the false, or rather misleading word
+	   self.participant_id = None #each participant will get a number
+	   self.instruction_list = None #string containing data in the instruction file
+	   self.full_stimulus_list = None
+	   self.familiarization_list = None #the words presented that are the actual list
+	   self.test_list = None #words presented which contain the false, or rather misleading word
 
 		self.data_list = [] #list to keep track of data for each trial
 
