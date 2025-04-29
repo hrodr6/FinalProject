@@ -7,7 +7,7 @@ import Config
 
 class Exp: 
 	def __init__(self, the_gui):
-	self.the_gui = the_gui #presents info on screen
+	    self.the_gui = the_gui #presents info on screen
 
 		self.participant_id = None #each participant will get a number
 		self.instruction_list = None #string containing data in the instruction file
