@@ -4,7 +4,7 @@ import random
 import datetime
 import config.config
 import Config
-
+ftfcrtctrctyrcyt
 class Exp: 
 	def __init__(self, the_gui):
 	    self.the_gui = the_gui #presents info on screen
