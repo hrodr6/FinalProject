@@ -1,6 +1,7 @@
 import tkinter as tk
-import time
 from PIL import Image, ImageTk
+import time
+import os
 from config.config import Config
 
 class Gui:
@@ -19,10 +20,10 @@ class Gui:
     def create_window(self):
         self.root = tk.Tk()  # create the tk window object and save it in self.root
         self.root.geometry("{}x{}".format(Config.window_width, Config.window_height))  # set the window size
-        self.root.title("Experiment")  # set the window title
-        self.root.configure(bg="white")  # set the window background color
+        self.root.title("DRM Task Experiment")  # set the window title
+        self.root.configure(bg="black")  # set the window background color
         self.root.resizable(False, False)  # set the window so that it is not resizable
-    
+
     def create_labels(self):
         self.instructions_text_label = tk.Label(self.root, anchor='center',
                                                 height=Config.window_height,
@@ -39,12 +40,14 @@ class Gui:
                                        fg=Config.stimulus_font_color,
                                        font="{} {}".format(Config.stimulus_font,
                                                            Config.stimulus_font_size))
-    def preload_images(self, image_name_list):
+
+    def preload_images(self, image_name_list, folder="stimuli/images"):
         self.image_dict = {}  # create an empty dictionary to store the images
-        for image_name in image_name_list:  # for each image name in the image name list
-            image = Image.open("stimuli/images/" + image_name + ".jpg") # create a PIL image object for that image name
-            photo_image = ImageTk.PhotoImage(image)  # convert the PIL image object into a TK image object
-            self.image_dict[image_name] = photo_image  # save the image in the dictionary with its name as a the key
+        for name in image_name_list:  # for each image name in the image name list
+            path = os.path.join(folder, name + ".png")
+            image = Image.open(path)
+            self.image_dict[name] = ImageTk.PhotoImage(image)  # save the image in the dictionary with its name as a the key
+
 
     def show_instructions(self, instructions, end_on_key_press, extra_delay=None):
         self.instructions_text_label.configure(text=instructions)  # set the text property of the label to the instruction string
@@ -70,13 +73,24 @@ class Gui:
         else: # if we do not want to end on a key press
             self.root.after(Config.instruction_delay) # sit and do nothing for the amount of time specied in the config file
 
-
-         # sit and do nothing for an additional amount of time, if specified by extra_delay
+        # sit and do nothing for an additional amount of time, if specified by extra_delay
         if extra_delay is not None:
             self.root.after(extra_delay)
 
         self.instructions_text_label.pack_forget() # remove the instruction_text_label from the window
         self.root.update()
+
+    def check_for_valid_key_press(self, event, valid_keys):
+        if event.keysym in valid_keys: # check to see if the key that was pressed is one of the valid keys
+
+            # gets rid of the event checking for key presses, meaning we only will get an event after the first key press
+            self.root.unbind('<Key>')
+
+            # makes sure the main window is the active window in the program after the key press
+            # this is just there as a precaution in case the key press did something unexpected
+            self.root.focus_set()
+
+            self.key_pressed = event.keysym  # set our variable keeping track of what key was pressed to the current value
 
     def show_stimulus(self, stimulus_name, key_list):
         if Config.condition == 0: # if we are in the word condition
@@ -110,7 +124,6 @@ class Gui:
         else: # if key_list is set to None, then sit and do nothing for the specified amount of time
             self.root.after(Config.stimulus_presentation_time)
 
-        
         time2 = time.time() # get the exact system time
         # compute the time different between when the stimulus was presented and the end of the stimulus, which will
         # correspond to how long it took the participant to respond in the trials where a key must be pressed
@@ -123,4 +136,35 @@ class Gui:
         self.root.after(Config.inter_trial_interval)
 
         return self.key_pressed, took  # return the key that was pressed and how it took
+
+    def show_confidence_prompt(self):
+
+        # Create a new top-level window for the slider
+        confidence_window = tk.Toplevel(self.root)
+        confidence_window.title("Confidence Rating")
+        confidence_window.geometry("300x150")
+
+        # Label
+        label = tk.Label(confidence_window, text="How confident are you?\n(1 = not confident, 5 = very confident)")
+        label.pack(pady=10)
+
+        # Slider
+        slider = tk.Scale(confidence_window, from_=1, to=5, orient=tk.HORIZONTAL)
+        slider.set(3)  # Default to middle
+        slider.pack(pady=10)
+
+        # Confirm button
+        confidence_value = tk.IntVar()
+
+        def confirm():
+            confidence_value.set(slider.get())
+            confidence_window.destroy()
+
+        confirm_button = tk.Button(confidence_window, text="Submit", command=confirm)
+        confirm_button.pack(pady=5)
+
+        # Wait for user input
+        self.root.wait_window(confidence_window)
+        return confidence_value.get()
+
 

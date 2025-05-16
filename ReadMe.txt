@@ -1,7 +1,7 @@
 Final Project Introduction
 
 
-1. My Final Project will be a cognitive science experiment--the Deese, Roediger and McDermott (DRM) task. It will be a false memory test. The participants will be given a set of words from a list. They will be shown the list twice; each word presented for an amount of time. Then, they will be asked to respond if the word was present in the list or not. It will count how many were correct and how many were false. They will get a percentage and an explanation on what false memories are and why it occurs anatomically.
+1. My Final Project will be a cognitive science experiment--the Deese, Roediger and McDermott (DRM) task. It will be a false memory test. The participants will be given a set of words from a random list of semantically related words. They will be shown the list twice; each word presented for an amount of time. Then, they will be asked to respond if the word was present in the list or not. It will count how many were correct and how many were false. They will get a number of the amount of words they correctly chose were present and an explanation on what false memories are and why it occurs anatomically.
 
 There will be four main functions. 
 2.a. memory_test(word list) The function will present  words based off a provided list twice. 
