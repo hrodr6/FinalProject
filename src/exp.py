@@ -2,7 +2,7 @@ import csv
 import os
 import random
 import datetime
-from config.config import Config
+from config.config import Config #IMPORTANT for configuration info
 
 class Exp:
    def __init__(self, the_gui):
@@ -19,15 +19,15 @@ class Exp:
       self.run_experiment() 
 
    def create_participant_id(self):
-      current_datetime = datetime.datetime.now() #to get current time
+      current_datetime = datetime.datetime.now() #gets current time which will be used in data
       formatted_dateline = current_datetime.strftime("%Y%m%d%H%M%S%f")
-      random_number = random.randint(1000, 9999) #random six digit number 
+      random_number = random.randint(1000, 9999) #assigns random ID number
       self.participant_id = f"{formatted_dateline}_{random_number}"
 
    def create_instruction_list(self):
-      self.instruction_list = []  # create the empty list
-      current_condition = Config.condition # get the current condition (word or image) from the config file
-      instruction_filename = Config.instruction_file_path_list[current_condition]  # get file path from config file
+      self.instruction_list = []  
+      current_condition = Config.condition # gets the current condition from the config 
+      instruction_filename = Config.instruction_file_path_list[current_condition] 
 
       with open(instruction_filename, 'r') as file:  # open the instruction file in read mode
          for line in file:  # for each line in the file
@@ -37,7 +37,7 @@ class Exp:
 
    def create_stimuli_lists(self):
       self.create_full_stimulus_list()
-          # self.create_familiarization_list()  ← REMOVE THIS LINE
+          # self.create_familiarization_list()  
       self.create_test_list()
       random.shuffle(self.familiarization_list)
       random.shuffle(self.test_list)
@@ -96,7 +96,7 @@ class Exp:
       self.the_gui.show_instructions(self.instruction_list[5], True)
       self.save_data()
 
-      self.show_total_wrong_responses()
+      self.show_wrong_response_percentage()
 
       self.the_gui.root.destroy()
 
@@ -159,18 +159,51 @@ class Exp:
          with open(filename, 'w', newline='') as csvfile:
             writer = csv.writer(csvfile)
             writer.writerows(final_data_list)
-   
-   def show_total_wrong_responses(self):
-      import csv
+   def show_wrong_response_percentage(self):
+      incorrect_count = 0
+      total_trials = len(self.data_list)
 
-      filename = f"data/{self.participant_id}.csv"
-      total_wrong = 0
+      for trial in self.data_list:
+         stimulus = trial[0]
+         response = trial[1]
 
-      with open(filename, "r") as file:
-         reader = csv.DictReader(file)
-         for row in reader:
-            if row.get("correct") == "0":
-               total_wrong += 1
+         if stimulus in self.familiarization_list:
+            correct_key = "u"  # assuming "u" = old
+         else:
+            correct_key = "i"  # assuming "i" = new
 
-      print(f"Here is the total amount of words you got incorrect: {total_wrong}")
+         if response != correct_key:
+            incorrect_count += 1
+
+      if total_trials > 0:
+         percentage_wrong = (incorrect_count / total_trials) * 100
+         print(f"Incorrect response rate: {percentage_wrong:.2f}%")
+      else:
+         print("No responses recorded.")
+
+   # def show_total_wrong_responses(self):
+   #    import csv
+
+   #    filename = f"data/{self.participant_id}.csv"
+   #    total_wrong = 0
+
+   #    with open(filename, "r") as file:
+   #       reader = csv.DictReader(file)
+   #       for row in reader:
+   #          if row.get("correct") == "0":
+   #             total_wrong += 1
+
+   #    print(f"Here is the total amount of words you got incorrect: {total_wrong}")# In exp.py
+
+def is_response_correct(response, expected_key):
+   return response == expected_key
+
+def classify_old_new(word, familiarization_list):
+   return "old" if word in familiarization_list else "new"
+
+def calculate_accuracy(correct, total):
+   return (correct / total) * 100 if total else 0
+
+
+
 

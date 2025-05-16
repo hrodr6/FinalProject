@@ -8,10 +8,10 @@ class Gui:
 
     def __init__(self):
         pass
-        self.root = None  # the variable where we will store the main window
-        self.stimulus_label = None  #  a tkinter label widget that we will use to present text or images
-        self.instructions_label = None  #  a tkinter label widget that we will use to present instructions
-        self.key_pressed = None  # variable we will use to keep track of which key has been pressed
+        self.root = None  
+        self.stimulus_label = None  #tkinter label widget to present text or images
+        self.instructions_label = None  
+        self.key_pressed = None  #variable keeping track of keys pressed
         self.image_dict = None  # a dictionary of image names pointing to tk image objects
 
         self.create_window()
