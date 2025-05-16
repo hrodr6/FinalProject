@@ -4,9 +4,10 @@ FALSE MEMORY EXPERIMENT
 	this is in an instructions.txt file. 
 	I have created a config.py in order to create the screen. 
 2. Study Phase
-	created a word_list.txt with a DRM task list of words. 
-	creating a run_final_experiment.py for the project to run. 
-3. Test Phase 
-4. Result Analysis
+	created png files from a previously tested DRM task list of words. 
+	creating a run_memory_test.py for the project to run. 
+3. Test Phase - the participants will receive their own participant ID number. They will be presented the stimulus and then asked whether another set of presented words was part of the first stimulus list. Participants will also share confidence level for each response.
 
-In order to run the experiment, similar to our last lab, we would use a run_final_experiment.py function. 
+4. Result Analysis - Participants will go through the test and receive a percentage for wrong answers. Their data will be stored in the data folder as it will be saved!
+
+In order to run the experiment, similar to a lab we had in class, we would use a run_memory_test.py function. 
